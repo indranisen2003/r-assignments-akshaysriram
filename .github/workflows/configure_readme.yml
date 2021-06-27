@@ -1,0 +1,2 @@
+- name: replace_envs
+  uses: franzbischoff/replace_envs@v1
