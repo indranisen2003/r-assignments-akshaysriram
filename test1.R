@@ -1,8 +1,7 @@
 ### INTERPRETATIONS ARE GIVEN ALONG WITH THE CODE AS AND WHEN IT IS RUN
 
 #Setting up directory
-setwd("C:/Users/SRIRAM/Desktop/VCU SCMA/RStudio/SCMA NSSO")
-dir()
+#setwd("C:/Users/SRIRAM/Desktop/VCU SCMA/RStudio/SCMA NSSO")
  #Importing file
 
 nsso<-read.csv('4. NSSO68 data set.csv')
@@ -135,9 +134,6 @@ hist(hp2$oilseeds_v)
 
 
 #Assignment 1Ab
-
-setwd("C:/Users/SRIRAM/Desktop/VCU SCMA/RStudio/SCMA IPL")
-dir()
 
 
 #TO READ A CSV FILE INTO R
