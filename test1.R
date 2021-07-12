@@ -137,20 +137,7 @@ hist(hp2$oilseeds_v)
 
 
 #TO READ A CSV FILE INTO R
-df  = read.csv('IPL Matches 2008-2020.csv', na.strings = "" )
-names(df)
-head(df)
-tail(df)
-class(df$date)
 
-
-df1 = read.csv("IPL Matches 2008-2020.csv")
-View(df1)
-
-df1$date1 = as.Date(df1$date, format="%m/%d/%Y")
-df1$date2 = as.Date(df1$date, format="%m/%d/%y")
-df1$date1[is.na(df1$date1)] = df1$date2[!is.na(df1$date2)]
-View(df1)
 
 df.score = read.csv('IPL Ball-by-Ball 2008-2020.csv', header=TRUE)
 names(df.score)
