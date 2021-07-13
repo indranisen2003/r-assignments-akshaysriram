@@ -4,7 +4,7 @@
 #setwd("C:/Users/SRIRAM/Desktop/VCU SCMA/RStudio/SCMA NSSO")
  #Importing file
 
-nsso<-read.csv('4. NSSO68 data set.csv')
+nsso<-read.csv('NSSO68 data set.csv')
 
 #Exploring
 names(nsso)
