@@ -219,3 +219,97 @@ descdist(rahul$score)
 # this seems to be because he is a batsman, not a bowler
 # There are no visualizations I can make as he has not debuted in a match as a bowler yet.
 
+
+########
+#Assignment 2
+
+names(hp)
+required_data <- c("state_1","District",
+                   "cerealstt_q",
+                   "pulsestt_q",
+                   "emftt_q",
+                   "foodtotal_q",
+                   "moong_q")
+hp_data<- hp[required_data]
+names(hp_data)
+View(hp_data)
+
+descdist(hp_data$cerealstt_q,discrete = FALSE) 
+descdist(hp_data$pulsestt_q,discrete = FALSE)  
+descdist(hp_data$emftt_q,discrete = FALSE) 
+descdist(hp_data$foodtotal_q,discrete = FALSE)
+descdist(hp_data$moong_q,discrete = FALSE)
+
+cerealstt_q_logis = fitdistr(hp_data$cerealstt_q+0.001,'Logistic',lower=0.001)
+cerealstt_q_logis$estimate
+cereal_logis  = rlogis(1000,location = 12.030010,scale = 1.566138)
+plot(density(cereal_logis))
+
+pulsestt_q_logis = fitdistr(hp_data$pulsestt_q+0.001,'Logistic',lower=0.001)
+pulsestt_q_logis$estimate
+pulse_logis  = rlogis(1000,location = 1.3845726,scale = 0.3731095)
+plot(density(pulse_logis))
+
+emftt_q_weibull = fitdistr(hp_data$emftt_q+0.00001,'weibull',lower=0.001)
+emftt_q_weibull$estimate
+m_weibull  = rweibull(1000,shape = 0.21454557,scale = 0.01632833)
+plot(density(m_weibull))
+
+food_logis = fitdistr(hp_data$foodtotal_q+0.001,'Logistic',lower=0.001)
+food_logis$estimate
+food_logis  = rlogis(1000,location = 30.538941,scale = 6.621054)
+plot(density(food_logis))
+
+moong_weibull = fitdistr(hp_data$moong_q+0.00001,'weibull',lower=0.001)
+moong_weibull$estimate
+moon_weibull  = rweibull(1000,shape = 0.26152951,scale = 0.02769517)
+plot(density(moon_weibull))
+
+#confidence interval
+
+cereal.cons = aggregate(hp_data$cerealstt_q, by=list(hp_data$District), FUN=mean)
+View(cereal.cons)
+
+pulses.cons = aggregate(hp_data$pulsestt_q, by=list(hp_data$District), FUN=mean)
+View(pulses.cons)
+
+emf.cons = aggregate(hp_data$emftt_q, by=list(hp_data$District), FUN=mean)
+View(emf.cons)
+
+food.cons = aggregate(hp_data$foodtotal_q, by=list(hp_data$District), FUN=mean)
+View(food.cons)
+
+moong.cons = aggregate(hp_data$moong_q, by=list(hp_data$District), FUN=mean)
+View(moong.cons)
+
+
+#Testing hypotheses
+
+#Testing of hypothesis
+#H1 = The cereal consumption is same across all districts in HP
+#H0 = The cereal consumption is not the same across all districts in HP
+cereals_test = aov(cerealstt_q~District, data = hp_data)
+summary(cereals_test)
+
+#H1 = The pulses consumption is same across all districts in HP
+#H0 = The pulses consumption is not the same across all districts in HP
+pulses_test = aov(pulsestt_q~District, data = hp_data)
+summary(pulses_test)
+
+#H1 = The emftt consumption is same across all districts in HP
+#H0 = The emftt consumption is not the same across all districts in HP
+meat_test = aov(emftt_q~District, data = hp_data)
+summary(meat_test)
+
+#H1 = The total food consumption is same across all districts in HP
+#H0 = The total food consumption is not the same across all districts in HP
+food_test = aov(foodtotal_q~District, data = hp_data)
+summary(food_test)
+
+#H1 = The moong consumption is same across all districts in HP
+#H0 = The moong consumption is not the same across all districts in HP
+moong_test = aov(moong_q~District, data = hp_data)
+summary(moong_test)
+
+
+
